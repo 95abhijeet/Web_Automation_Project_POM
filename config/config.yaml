@@ -1,0 +1,9 @@
+url: "https://testautomationpractice.blogspot.com/"
+
+form_data:
+  name: "Abhijeet Singh"
+  email: "abhijeetsingh@xyz.com"
+  phone: "9988774456"
+  country: "India"
+  start_date: "2025/01/10"
+  end_date: "2025/10/10"
