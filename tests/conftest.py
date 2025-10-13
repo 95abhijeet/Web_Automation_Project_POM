@@ -2,7 +2,9 @@ import pytest
 import yaml
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
-
+import time
+from pathlib import Path
+import os
 
 @pytest.fixture(scope = "session")
 def config():
@@ -17,3 +19,11 @@ def driver():
     driver.maximize_window()
     yield driver
     driver.quit()
+
+def pytest_configure(config):
+    report_dir = Path("reports")
+    report_dir.mkdir(parents=True, exist_ok=True)
+    timestamp = time.strftime('%Y-%m-%d_%H-%M-%S')
+    report_name = f"HTML_Report_{timestamp}.html"
+    report_path = os.path.join(report_dir, report_name)
+    config.option.htmlpath = report_path
