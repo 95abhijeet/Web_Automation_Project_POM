@@ -30,8 +30,11 @@ class BasePage:
         self.driver.execute_script(f"window.scrollBy(0, {pixels});")
 
     def take_screenshot(self):
-        screenshot_dir = 'D:\\Projects\\Web_Automation_Project_POM\\screenshots'
+        screenshot_dir = 'screenshots'
+        os.makedirs(screenshot_dir, exist_ok= True)
+
         timestamp = time.strftime('%Y-%m-%d_%H-%M-%S')
         screenshot_name = f"automation_practice-screenshot_{timestamp}.png"
         screenshot_path = os.path.join(screenshot_dir, screenshot_name)
+        
         self.driver.save_screenshot(screenshot_path)

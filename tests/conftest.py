@@ -13,9 +13,10 @@ def config():
 
 @pytest.fixture(scope = "function")
 def driver():
-    chrome_driver_path = r'D:\Projects\Web_Automation_Project_POM\chromedriver-win64\chromedriver-win64\chromedriver.exe'
-    service = Service(chrome_driver_path)
-    driver = webdriver.Chrome(service=service)
+    #chrome_driver_path = r'D:\Projects\Web_Automation_Project_POM\chromedriver-win64\chromedriver-win64\chromedriver.exe'
+    #service = Service(chrome_driver_path)
+    
+    driver = webdriver.Chrome()
     driver.maximize_window()
     yield driver
     driver.quit()

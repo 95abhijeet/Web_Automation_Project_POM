@@ -1,0 +1,60 @@
+name: Selenium POM CI
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      browser:
+        type: choice
+        description: Which browser to test
+        required: true
+        options:
+          - firefox
+          - chrome
+          - edge
+
+    
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11.9'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      #- name: Install Chrome
+      #  run: |
+      #     sudo apt-get update
+      #      sudo apt-get install google-chrome-stable
+      
+      - name: Run Pytest Tests
+        run: |
+          pytest --html=reports/HTML_Report.html --self-contained-html
+
+      - name: Upload Test Report Artifact
+        uses: actions/upload-artifact@v5
+        with:
+          name: PyTest-HTML-Report-${{ github.sha }}  
+          path: reports/HTML-Report.html
+          retention-days: 7
+
+      - name: Upload Screenshots Artifacts ( If Tests Failed)
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: screenshots-${{ github.sha }}
+          path: screenshots/
+          retention-days: 7   
+       

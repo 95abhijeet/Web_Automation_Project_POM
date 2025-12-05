@@ -70,7 +70,8 @@ This diagram illustrates how the **test script**, **page objects**, and **browse
 - Handle **browser alert pop-ups** (accept/dismiss)  
 - Take **screenshots** for verification  
 - Fully **config-driven** using `config.yaml`  
-- **Reusable Page Object Model** for maintainable code  
+- **Reusable Page Object Model** for maintainable code
+- Generating HTML reports automatically with timestamps
 
 ---
 
@@ -108,7 +109,17 @@ Web_Automation_Project_POM/
 ├── requirements.txt # Python dependencies
 └── README.md # Project documentation
 ```
+## HTML Test Reports
 
+This project generates detailed HTML reports for every test run using pytest-html, providing a clear overview of test results.
+
+- Automatic report generation: Each test run creates a report in the reports/ folder with a timestamp.
+- Test summary: Displays the number of passed, failed, and skipped tests.
+- Detailed test logs: Shows each test step and execution status.
+- Screenshots for failed tests: Automatically captures screenshots for failures and attaches them to the report.
+- Custom report names: Includes timestamps for easy identification.
+
+<img width="902" height="431" alt="image" src="https://github.com/user-attachments/assets/243e158c-8bb3-45c9-8924-cad5bad33a88" />
 
 ---
 
@@ -118,20 +129,23 @@ Web_Automation_Project_POM/
 ```bash
 git clone https://github.com/<your-username>/Web_Automation_Project_POM.git
 cd Web_Automation_Project_POM
-
+```
 **2. Create a Python virtual environment and activate it:**
+```
 python -m venv .venv
 # PowerShell
 & ".\.venv\Scripts\Activate.ps1"
 # or CMD
 .venv\Scripts\activate.bat
-
+```
 **3. Install dependencies:**
+```
 pip install -r requirements.txt
-
+```
 **4. Run the automation test:**
+```
 pytest -v
-
+```
 
 ## 🎯 Learning Outcomes
 
@@ -147,3 +161,6 @@ pytest -v
 **Abhijeet Singh**
 - LinkedIn: https://www.linkedin.com/in/abhijeetsingh95
 - GitHub: https://github.com/95abhijeet
+
+# Trigger CI: test push 2025-12-05 17:58:32Z
+
