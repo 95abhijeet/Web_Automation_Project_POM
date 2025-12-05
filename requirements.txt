@@ -1,4 +1,5 @@
 pytest==8.4.2
 PyYAML==6.0.3
 selenium==4.36.0
-pytest-html-report==4.1.1
+webdriver-manager
+pytest-html

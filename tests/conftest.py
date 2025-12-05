@@ -2,6 +2,8 @@ import pytest
 import yaml
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
 import time
 from pathlib import Path
 import os
@@ -13,10 +15,16 @@ def config():
 
 @pytest.fixture(scope = "function")
 def driver():
-    #chrome_driver_path = r'D:\Projects\Web_Automation_Project_POM\chromedriver-win64\chromedriver-win64\chromedriver.exe'
-    #service = Service(chrome_driver_path)
-    
-    driver = webdriver.Chrome()
+    # Use webdriver-manager to download a matching Chromedriver.
+    options = Options()
+    # In CI we generally want headless mode and some flags to avoid sandbox issues
+    if os.environ.get("CI"):
+        options.add_argument("--headless=new")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+
+    service = Service(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=service, options=options)
     driver.maximize_window()
     yield driver
     driver.quit()
