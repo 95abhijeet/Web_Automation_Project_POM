@@ -61,7 +61,7 @@ jobs:
         uses: actions/upload-artifact@v5
         with:
           name: PyTest-HTML-Report-${{ github.sha }}  
-          path: reports/HTML-Report.html
+          path: reports/
           retention-days: 7
 
       - name: Upload Screenshots Artifacts ( If Tests Failed)
