@@ -1,5 +1,9 @@
 pytest==8.4.2
 PyYAML==6.0.3
 selenium==4.36.0
+<<<<<<< HEAD
 webdriver-manager
 pytest-html
+=======
+
+>>>>>>> 3ddc62d4309a7c5add03f719aa055cf9f9611771
